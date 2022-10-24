@@ -1,4 +1,4 @@
-#Master-thesis-backend flask start
+# Master-thesis-backend flask start
 
 1. VS code terminal
 2. source ./env/bin/activate
