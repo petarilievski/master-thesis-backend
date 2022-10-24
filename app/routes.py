@@ -27,3 +27,7 @@ def buttonsStatus(data):
     formatData = json.loads(data)
 
     return str(formatData['state'])
+
+@app.route('/sensors-state/<data>', methods = ['POST'])
+def sensorsState(data):
+    return data
