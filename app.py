@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymcprotocol import Type1E
-import types
 
 app = Flask(__name__)
 CORS(app)
 
 pymc1e = Type1E()
+    # pymc1e.connect('192.168.110.24', 1025)
 
-pymc = pymc1e.connect('192.168.110.24', 1025)
 
 sensors = {
     "M1": False,
@@ -16,9 +15,11 @@ sensors = {
     "M3": False,
     "M4": False
 }
+plc = True
 
 @app.route('/api/update-buttons', methods=['POST'])
 def update_buttons():
+
     pressed = request.json['pressed']
     state = request.json['state']
 
@@ -31,3 +32,9 @@ def update_sensors():
     sensors[sensor] = not sensors[sensor]
 
     return jsonify(sensors)
+
+@app.route('/api/update-plc', methods=['POST'])
+def update_plc():
+    plc = request.json['plc']
+
+    return jsonify(plc)
